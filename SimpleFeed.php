@@ -67,7 +67,7 @@ function parseFeed($input, $args, &$parser)
 	}
 
 	$feed = new SimplePie();
-	$feed->feed_url($args['url']);
+	$feed->set_feed_url($args['url']);
 
 	// Get the feed information!
 	$feed->init();
