@@ -2,7 +2,7 @@
 /* 
 * SimpleFeed MediaWiki extension
 * 
-* Copyright (C) 2007 Jonny Lamb <jonnylamb@jonnylamb.com>
+* Copyright (C) 2007-2008 Jonny Lamb <jonnylamb@jonnylamb.com>
 * 
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
