@@ -28,7 +28,7 @@ if (!defined('MEDIAWIKI'))
 }
 
 // Path to simplepie.inc (including leading slash).
-$simplepie_path = 'extensions/';
+$simplepie_path = './extensions/';
 
 // Path to SimplePie cache folder (excluding leader slash).
 // Defaults to "./extensions/cache"
