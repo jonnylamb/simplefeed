@@ -30,6 +30,10 @@ if (!defined('MEDIAWIKI'))
 // Path to simplepie.inc (including leading slash).
 $simplepie_path = 'extensions/';
 
+// Path to SimplePie cache folder (excluding leader slash).
+// Defaults to "./extensions/cache"
+$simplepie_cache_folder = $simplepie_path + 'cache/';
+
 if ( ! @include($simplepie_path.'simplepie.inc') )
 {
 	define('SIMPLEPIE_NOT_FOUND', true);
@@ -67,6 +71,8 @@ function parseFeed($input, $args, &$parser)
 	}
 
 	$feed = new SimplePie();
+	$feed->set_cache_location($simplepie_cache_folder);
+
 	$feed->set_feed_url($args['url']);
 
 	// Get the feed information!
