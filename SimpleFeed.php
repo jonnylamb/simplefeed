@@ -55,6 +55,8 @@ function wfSimpleFeed()
 
 function parseFeed($input, $args, &$parser)
 {
+	global $simplepie_cache_folder;
+
 	// Disable page caching.
 	$parser->disableCache();
 	
