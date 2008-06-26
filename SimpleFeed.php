@@ -32,7 +32,7 @@ $simplepie_path = './extensions/';
 
 // Path to SimplePie cache folder (excluding leader slash).
 // Defaults to "./extensions/cache"
-$simplepie_cache_folder = $simplepie_path + 'cache/';
+$simplepie_cache_folder = $simplepie_path . 'cache/';
 
 if ( ! @include($simplepie_path.'simplepie.inc') )
 {
