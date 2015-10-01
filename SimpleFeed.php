@@ -44,7 +44,8 @@ $wgExtensionCredits['parserhook'][] = array(
 	'name' => 'SimpleFeed',
 	'description' => 'Uses SimplePie to output RSS/atom feeds',
 	'author' => 'Jonny Lamb',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:SimpleFeed'
+	'url' => 'http://www.mediawiki.org/wiki/Extension:SimpleFeed',
+	'license-name' => 'GPLv2'
 );
 
 function wfSimpleFeed()
