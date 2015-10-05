@@ -42,7 +42,7 @@ if ( ! @include($simplepie_path.'simplepie.inc') )
 $wgExtensionFunctions[] = 'wfSimpleFeed';
 $wgExtensionCredits['parserhook'][] = array(
 	'name' => 'SimpleFeed',
-	'description' => 'Uses SimplePie to output RSS/atom feeds',
+	'description' => 'simplefeed-desc',
 	'author' => 'Jonny Lamb',
 	'url' => 'http://www.mediawiki.org/wiki/Extension:SimpleFeed',
 	'license-name' => 'GPLv2'
@@ -64,7 +64,7 @@ function parseFeed($input, $args, &$parser)
 	// Check to see whether SimplePie was actually included.
 	if (defined('SIMPLEPIE_NOT_FOUND'))
 	{
-		return '<strong>Error</strong>: <tt>simplepie.inc</tt> was not found in the path. Please edit the path (beginning of extensions/SimpleFeed.php) or add <tt>simplefeed.inc</tt> to the current path.';
+		return 'simplefeed-pienotfound';
 	}
 	
 	// Must have a feed URL and a template to go by outputting items.
