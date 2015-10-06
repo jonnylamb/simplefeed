@@ -36,6 +36,8 @@ The number of post entries to output. This defaults to 5, but can be any number.
 If this is set to "planet" then the post title and author will be retrieved from the title. For example, a post in a planet/aggregator could have a title "Joe Bloggs: MediaWiki is great". If type="planet" is set, then {TITLE} will become "Mediawiki is great", and {AUTHOR} will become "Joe Bloggs".
 ### date
 The format of the date to output. This conforms to PHP's date function syntax. This defaults to j F Y (E.g. 3 March 2007).
+### sort
+If you specify sort="asc" then the feeds will be displayed in revers order. 
 
 ## Further examples
 Using an aggregator's feed

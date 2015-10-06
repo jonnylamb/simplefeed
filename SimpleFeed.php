@@ -104,10 +104,15 @@ function parseFeed($input, $args, &$parser)
 		$max = $feed->get_item_quantity(5);
 	}
 	
-	// Loop through each item.
+  // sorting descending is default
+  $fOffset = 0; $fMult = 1;
+  if (isset($args['sort']) and $args['sort'] == 'asc') {
+    $fOffset = $max - 1; $fMult = -1;
+  }
+  // Loop through each item.
 	for ($i = 0; $i < $max; $i++)
 	{
-		$item = $feed->get_item($i);
+    $item = $feed->get_item($i * $fMult + $fOffset);  
 
 		$itemwikitext = $input;
 
