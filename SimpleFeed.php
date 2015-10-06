@@ -57,7 +57,7 @@ function wfSimpleFeed()
 	$wgParser->setHook('feed', 'parseFeed');
 }
 
-function parseFeed($input, $args, &$parser)
+function parseFeed($input, $args, $parser)
 {
 	global $simplepie_cache_folder;
 
