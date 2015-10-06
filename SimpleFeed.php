@@ -43,9 +43,12 @@ $wgExtensionFunctions[] = 'wfSimpleFeed';
 $wgExtensionCredits['parserhook'][] = array(
 	'name' => 'SimpleFeed',
 	'description' => 'simplefeed-desc',
-	'author' => 'Jonny Lamb',
+	'author' => array(
+		'Jonny Lamb',
+		'Dennis Roczek')
 	'url' => 'http://www.mediawiki.org/wiki/Extension:SimpleFeed',
-	'license-name' => 'GPLv2'
+	'license-name' => 'GPLv2+',
+	'version' => '1.0.1'
 );
 
 function wfSimpleFeed()
