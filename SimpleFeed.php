@@ -30,9 +30,9 @@ if (!defined('MEDIAWIKI'))
 
 // Path to SimplePie cache folder (excluding leader slash).
 $wgSimpleFeed_Path = dirname( __FILE__ );
-$wgSimpleFeed_Cache = $wgSimpleFeed_Path . 'cache/';
+$wgSimpleFeed_Cache = $wgSimpleFeed_Path . '/cache/';
 
-if ( ! @include($wgSimpleFeed_Path.'simplepie.inc') )
+if ( ! @include($wgSimpleFeed_Path.'/simplepie.inc') )
 {
 	define('SIMPLEPIE_NOT_FOUND', true);
 }
