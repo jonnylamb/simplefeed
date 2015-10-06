@@ -11,6 +11,7 @@ SimpleFeed needs following prerequisites:
  1. cd ./extensions/
  2. git clone https://github.com/dennisroczek/simplefeed
  3. set correct write permissions using chmod (www-user, or equivalent, should be allowed to write). Permissions are usually 755, 775 or 777. See setting permissions for cache directory
+   1. chown -R www-data: /var/www/sites/mywiki.org/extensions/simplefeed/*
  4. Add require_once "$IP/extensions/SimpleFeed.php"; to LocalSettings.php
  5. If you are in a corporate environment, check out any proxy servers or firewalls.
 
@@ -42,6 +43,8 @@ If this is set to "planet" then the post title and author will be retrieved from
 The format of the date to output. This conforms to PHP's date function syntax. This defaults to j F Y (E.g. 3 March 2007).
 ### sort
 If you specify sort="asc" then the feeds will be displayed in revers order. 
+### limit
+A possibility to limit the description to a maximum of XXX characters.
 
 ## Further examples
 Using an aggregator's feed
@@ -56,10 +59,6 @@ This will remove the author's name from the title of the post, and setting its v
 ## Changing the date format
     <feed url="http://planet.debian.org/rss20.xml" date="h:i:s d/m/y T">...
 Changes the date format to, in this example, "23:20:04 24/03/2007 GMT".
-
-## Parameters
-Line 31: $simplepie_path - string: Path to simplepie.inc, including leading forward slash. For example:
-		  $simplepie_path = 'extensions/';
 
 ## Todo
 The following feature(s) to be added:
