@@ -2,6 +2,10 @@
 
 This extension outputs the contents of an RSS feed. It is very customisable. As a result, no editing of the PHP source is required as everything is done in the wiki page.
 
+## Prerequisites
+SimpleFeed needs following prerequisites:
+ 1. MediaWiki 1.23
+
 ## Installation
 
  1. cd ./extensions/

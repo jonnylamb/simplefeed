@@ -48,7 +48,7 @@ $wgExtensionCredits['parserhook'][] = array(
 		'Dennis Roczek')
 	'url' => 'http://www.mediawiki.org/wiki/Extension:SimpleFeed',
 	'license-name' => 'GPLv2+',
-	'version' => '1.0.1'
+	'version' => '1.0.22
 );
 
 function wfSimpleFeed()
