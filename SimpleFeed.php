@@ -130,7 +130,7 @@ function parseFeed($input, $args, $parser)
 		// This will make: {AUTHOR} -> "Joe Bloggs"
 		//                 {TITLE} -> "I love Mediawiki"
 		// If this is not set however, the title and author are received the usual way.
-		if ($args['type'] == 'planet')
+		if (isset($args['type']) && $args['type'] == 'planet')
 		{
 			$title = preg_replace('/(.*): (.*)/sU', '\\2', $item->get_title());
 			preg_match('/(.+?): (.+)/sU', $item->get_title(), $matches);
