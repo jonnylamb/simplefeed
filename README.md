@@ -2,6 +2,8 @@
 
 This extension outputs the contents of an RSS feed. It is very customisable. As a result, no editing of the PHP source is required as everything is done in the wiki page.
 
+This extension works well with old PHP versions. The simplepie framework is deprecated and not longer maintained (in the version which this extension is using). We at The Document Foundation switched to Extension:RSS as this extension is maintained by the WMF!
+
 ## Prerequisites
 SimpleFeed needs following prerequisites:
  1. MediaWiki 1.23
@@ -62,5 +64,7 @@ Changes the date format to, in this example, "23:20:04 24/03/2007 GMT".
 
 ## Todo
 The following feature(s) to be added:
+
 1. Check whether the URL given is a correct address. If SimplePie can't read it, output something.
+
 2. Clean up the regular expressions.
