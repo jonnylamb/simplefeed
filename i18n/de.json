@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dennis Roczek"
+		]
+	},
+	"simplefeed-desc": "Benutzt SimplePie zur Ausgabe von RSS/atom feeds",
+	"simplefeed-pienotfound": "<strong>Fehler</strong>: <tt>simplepie.inc</tt> wurde nur nicht am angegebenen Ort gefunden. Bitte ändere den Pfad (am Anfang von extensions/SimpleFeed.php) oder füge <tt>simplefeed.inc</tt> zu dem aktuellen Pfad hinzu."
+}

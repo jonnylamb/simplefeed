@@ -27,14 +27,12 @@ if (!defined('MEDIAWIKI'))
 	exit(1);
 }
 
-// Path to simplepie.inc (including leading slash).
-$simplepie_path = './extensions/';
 
 // Path to SimplePie cache folder (excluding leader slash).
-// Defaults to "./extensions/cache"
-$simplepie_cache_folder = $simplepie_path . 'cache/';
+$wgSimpleFeed_Path = dirname( __FILE__ );
+$wgSimpleFeed_Cache = $wgSimpleFeed_Path . '/cache/';
 
-if ( ! @include($simplepie_path.'simplepie.inc') )
+if ( ! @include($wgSimpleFeed_Path.'/simplepie.inc') )
 {
 	define('SIMPLEPIE_NOT_FOUND', true);
 }
@@ -42,10 +40,17 @@ if ( ! @include($simplepie_path.'simplepie.inc') )
 $wgExtensionFunctions[] = 'wfSimpleFeed';
 $wgExtensionCredits['parserhook'][] = array(
 	'name' => 'SimpleFeed',
-	'description' => 'Uses SimplePie to output RSS/atom feeds',
-	'author' => 'Jonny Lamb',
-	'url' => 'http://www.mediawiki.org/wiki/Extension:SimpleFeed'
+	'descriptionmsg' => 'simplefeed-desc',
+	'author' => array(
+		'Jonny Lamb',
+		'Dennis Roczek'),
+	'url' => 'http://www.mediawiki.org/wiki/Extension:SimpleFeed',
+	'license-name' => 'GPLv2+',
+	'version' => '1.0.23'
 );
+
+
+$wgMessagesDirs['SimpleFeed'] = __DIR__ . '/i18n';
 
 function wfSimpleFeed()
 {
@@ -53,9 +58,9 @@ function wfSimpleFeed()
 	$wgParser->setHook('feed', 'parseFeed');
 }
 
-function parseFeed($input, $args, &$parser)
+function parseFeed($input, $args, $parser)
 {
-	global $simplepie_cache_folder;
+	global $wgSimpleFeed_Cache;
 
 	// Disable page caching.
 	$parser->disableCache();
@@ -63,7 +68,7 @@ function parseFeed($input, $args, &$parser)
 	// Check to see whether SimplePie was actually included.
 	if (defined('SIMPLEPIE_NOT_FOUND'))
 	{
-		return '<strong>Error</strong>: <tt>simplepie.inc</tt> was not found in the path. Please edit the path (beginning of extensions/SimpleFeed.php) or add <tt>simplefeed.inc</tt> to the current path.';
+		return 'simplefeed-pienotfound';
 	}
 	
 	// Must have a feed URL and a template to go by outputting items.
@@ -73,7 +78,7 @@ function parseFeed($input, $args, &$parser)
 	}
 
 	$feed = new SimplePie();
-	$feed->set_cache_location($simplepie_cache_folder);
+	$feed->set_cache_location($wgSimpleFeed_Cache);
 
 	$feed->set_feed_url($args['url']);
 
@@ -86,6 +91,8 @@ function parseFeed($input, $args, &$parser)
 	// The date argument should conform to PHP's date function, nicely documented
 	// at http://php.net/date.
 	$date = (isset($args['date'])) ? $args['date'] : 'j F Y';
+
+	$limit = (isset($args['limit'])) ? $args['limit'] : '100';
 
 	$output = '';
 
@@ -100,10 +107,17 @@ function parseFeed($input, $args, &$parser)
 		$max = $feed->get_item_quantity(5);
 	}
 	
+	// sorting descending is default
+	$fOffset = 0;
+	$fMult = 1;
+	if (isset($args['sort']) and $args['sort'] == 'asc')
+	{
+		$fOffset = $max - 1; $fMult = -1;
+	}
 	// Loop through each item.
 	for ($i = 0; $i < $max; $i++)
 	{
-		$item = $feed->get_item($i);
+		$item = $feed->get_item($i * $fMult + $fOffset);
 
 		$itemwikitext = $input;
 
@@ -114,14 +128,14 @@ function parseFeed($input, $args, &$parser)
 		$itemwikitext = str_replace('{DATE}', $item->get_date($date), $itemwikitext);
 
 		// {DESCRIPTION} -> The actual post (or post description if there's a tear).
-		$itemwikitext = str_replace('{DESCRIPTION}', $item->get_description(), $itemwikitext);
+		$itemwikitext = str_replace('{DESCRIPTION}', substr($item->get_description(), 0, $limit).'...', $itemwikitext);
 
 		// If $type="planet" is used, the author is got from the post title.
 		// e.g. title = "Joe Bloggs: I love Mediawiki"
 		// This will make: {AUTHOR} -> "Joe Bloggs"
 		//                 {TITLE} -> "I love Mediawiki"
 		// If this is not set however, the title and author are received the usual way.
-		if ($args['type'] == 'planet')
+		if ((isset($args['type'])) && ($args['type'] == 'planet'))
 		{
 			$title = preg_replace('/(.*): (.*)/sU', '\\2', $item->get_title());
 			preg_match('/(.+?): (.+)/sU', $item->get_title(), $matches);

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dennis Roczek"
+		]
+	},
+	"simplefeed-desc": "Uses SimplePie to output RSS/atom feeds",
+  "simplefeed-pienotfound": "<strong>Error</strong>: <tt>simplepie.inc</tt> was not found in the path. Please edit the path (beginning of extensions/SimpleFeed.php) or add <tt>simplefeed.inc</tt> to the current path."
+}

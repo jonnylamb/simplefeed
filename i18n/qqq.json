@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dennis Roczek"
+		]
+	},
+	"simplefeed-desc": "[[Special:Version]] description",
+	"simplefeed-pienotfound": "Error message when SimplePie is not found at the server."
+}
+
+
